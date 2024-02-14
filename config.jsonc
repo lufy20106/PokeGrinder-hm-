@@ -4,7 +4,7 @@
   "LoggingInterval": 10,
   // Interval between updating log table in seconds
   "": {
-    // Token between the double quotes
+  // Token between the double quotes
     "HuntingChannel": 0,
     // Hunting Channel ID, 0 to disable hunting
     "FishingChannel": 0,
