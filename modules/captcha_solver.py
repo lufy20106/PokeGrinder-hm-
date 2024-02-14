@@ -1,8 +1,7 @@
 from os import remove
 from ultralytics import YOLO
 
-model = YOLO("assets/Solver1850.pt")
-
+model = YOLO("assets/Solver.pt")
 
 def solve_captcha(url: str) -> str:
     result = model.predict(
