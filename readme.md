@@ -121,7 +121,7 @@ The logs may look different for you depending on your terminal config ;).
 ## Launching
 
 1. Clone the repository.
-2. Download `Solver1850.pt` from releases or some [here](https://github.com/lufy20106/PokemeowCaptchaSolverUltralytics/releases/tag/heh), rename it to `Slover.pt` and place it into the assets folder.
+2. Download `Solver1850.pt` from releases or some [here](https://github.com/lufy20106/PokemeowCaptchaSolverUltralytics/releases/tag/heh), rename it to `Solver.pt` and place it into the assets folder.
 3. Run the `main.py` file from the terminal.
 
 ## Stopping
