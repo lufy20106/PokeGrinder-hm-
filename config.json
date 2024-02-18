@@ -1,0 +1,72 @@
+{
+  "ClearConsole": true,
+  "CaptchaSolver": true,
+  "LoggingInterval": 10,
+  "SuspicionAvoidance": 250,
+  "": {
+    "HuntingChannel": 0,
+    "FishingChannel": 0,
+    "Balls": {
+      "Common": "pb",
+      "Uncommon": "pb",
+      "Rare": "gb",
+      "Super Rare": "ub",
+      "Legendary": "mb",
+      "Shiny": "mb",
+      "Shiny Event": "mb",
+      "Shiny Full-odds": "prb"
+    },
+    "FishBalls": {
+      "Common": "pb",
+      "Uncommon": "gb",
+      "Rare": "ub",
+      "Super Rare": "ub",
+      "Legendary": "db",
+      "Shiny": "mb",
+      "Golden": "mb"
+    },
+    "AutoBuy": {
+      "pb": 100,
+      "gb": 50,
+      "ub": 5,
+      "mb": 1
+    },
+    "RetryCooldown": 1,
+    "HuntingCooldown": 8.4,
+    "FishingCooldown": 22.4,
+    "CaptchaRetries": 3
+  },
+  "": {
+    "HuntingChannel": 0,
+    "FishingChannel": 0,
+    "Balls": {
+      "Common": "pb",
+      "Uncommon": "pb",
+      "Rare": "gb",
+      "Super Rare": "ub",
+      "Legendary": "mb",
+      "Shiny": "mb",
+      "Shiny Event": "mb",
+      "Shiny Full-odds": "prb"
+    },
+    "FishBalls": {
+      "Common": "pb",
+      "Uncommon": "gb",
+      "Rare": "ub",
+      "Super Rare": "ub",
+      "Legendary": "db",
+      "Shiny": "mb",
+      "Golden": "mb"
+    },
+    "AutoBuy": {
+      "pb": 50,
+      "gb": 25,
+      "ub": 5,
+      "mb": 1
+    },
+    "RetryCooldown": 1,
+    "HuntingCooldown": 8.4,
+    "FishingCooldown": 22.4,
+    "CaptchaRetries": 3
+  }
+}
