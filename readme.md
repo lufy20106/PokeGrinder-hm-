@@ -2,7 +2,7 @@
 
 A robust and efficient discord self-bot for automating Pokémeow with a free captcha solver.
 
-<a target="_blank" href="https://colab.research.google.com/github.com/lufy20106/PokeGrinder-hm-/blob/master/assets/PokeGrinder.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github/lufy20106/PokeGrinder-hm-/blob/master/assets/PokeGrinder.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
