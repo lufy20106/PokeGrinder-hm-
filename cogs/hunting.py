@@ -143,8 +143,8 @@ class Hunting(commands.Cog):
                     )
                 )
 
-        if "Your next Quest is now ready!" in before.content:
-            await asyncio.sleep(1 + randint(0, self.config.suspicion_avoidance) / 1000)
+        if "completed the quest" in after.content:
+            await asyncio.sleep(2 + randint(0, self.config.suspicion_avoidance) / 1000)
             tasks.append(
                 asyncio.create_task(self.bot.hunting_channel_commands["quest info"]())
             )
