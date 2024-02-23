@@ -68,7 +68,7 @@ class Startup(commands.Cog):
             self.hunting_check.start()
             
         if self.bot.hunting_channel_commands:
-            await asyncio.sleep(5)
+            await asyncio.sleep(10)
             await self.bot.hunting_channel_commands["pokemon"]()
             self.hunting_check.start()
 
