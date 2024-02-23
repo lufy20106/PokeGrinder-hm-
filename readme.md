@@ -2,7 +2,7 @@
 
 A robust and efficient discord self-bot for automating Pokémeow with a free captcha solver.
 
-<a target="_blank" href="https://colab.research.google.com/github/MehulKhanna/PokeGrinder/blob/master/assets/PokeGrinder.ipynb">
+<a target="_blank" href="https://colab.research.google.com/github.com/lufy20106/PokeGrinder-hm-/blob/master/assets/PokeGrinder.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -47,16 +47,21 @@ The logs may look different for you depending on your terminal config ;).
 7. Quests
 - Automatically sends `/quest info` when a new quest is ready.
 
+8. Auto Release Duplicates
+- Automatically sends `/release duplicates` after the bot has caught the specified number of duplicates in the config.
+- Counts the number of duplicates caught based on "has been added to your Pokedex" messages.
+
 ## Upcoming Features
 
-1. Auto Releases Duplicates
-2. Holding and Hatching Eggs
+1. Holding and Hatching Eggs
 
 ## Config
 
 ```jsonc
 {
-  "ClearConsole": true
+  "CaptchaRetries": 3,
+  // How may times to retry after one incorrect captcha
+  "ClearConsole": true,
   // Whether to clear console or not (set false to see errors)
   "CaptchaSolver": true,
   // Automatically solve captcha true/false
@@ -64,6 +69,14 @@ The logs may look different for you depending on your terminal config ;).
   // Interval between updating log table in seconds
   "SuspicionAvoidance": 250,
   // Random delay (b/w 0 and the value) for responses in milliseconds
+  "Cooldowns": {
+    "RetryCooldown": 1,
+    // Time to wait in seconds after "Please wait" messages
+    "HuntingCooldown": 8.4,
+    // Time between /pokemon commands
+    "FishingCooldown": 22.4
+    // Time between /fish spawn commands
+  },
   "": {
     // Token between the double quotes
     "HuntingChannel": 0,
@@ -98,14 +111,8 @@ The logs may look different for you depending on your terminal config ;).
       "ub": 5,
       "mb": 1
     },
-    "RetryCooldown": 1,
-    // Time to wait in seconds after "Please wait" messages
-    "HuntingCooldown": 8.4,
-    // Time between /pokemon commands
-    "FishingCooldown": 22.4,
-    // Time between /fish spawn commands
-    "CaptchaRetries": 3
-    // How may times to retry after one incorrect captcha
+    "AutoReleaseDuplicates": 100
+    // Number of duplicates before auto releasing duplicates, set 0 to disable
   },
   // Add multiple accounts below :-
   "Second Token": {...}
@@ -133,8 +140,7 @@ The logs may look different for you depending on your terminal config ;).
 ## Launching
 
 1. Clone the repository.
-2. Download `Solver100k.pt` from releases and place it into the assets folder.
-3. Run the `main.py` file from the terminal.
+2. Run the `main.py` file from the terminal.
 
 ## Stopping
 

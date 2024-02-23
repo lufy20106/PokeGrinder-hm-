@@ -1,6 +1,7 @@
 from time import time
 from typing import Tuple, Dict
 from dataclasses import dataclass
+import asyncio
 
 from discord.ext import commands, tasks
 from discord import SlashCommand, UserCommand, MessageCommand, SubCommand, TextChannel
@@ -13,7 +14,7 @@ class Config:
     balls: Dict[str, str]
     fish_balls: Dict[str, str]
     auto_buy: Dict[str, int]
-    autordcap: int
+    auto_release_duplicates: int
     retry_cooldown: float
     hunting_cooldown: float
     fishing_cooldown: float
@@ -63,6 +64,11 @@ class Startup(commands.Cog):
         )
 
         if self.bot.hunting_channel_commands:
+            await self.bot.hunting_channel_commands["quest info"]()
+            self.hunting_check.start()
+            
+        if self.bot.hunting_channel_commands:
+            await asyncio.sleep(5)
             await self.bot.hunting_channel_commands["pokemon"]()
             self.hunting_check.start()
 
@@ -70,16 +76,16 @@ class Startup(commands.Cog):
             await self.bot.fishing_channel_commands["fish spawn"]()
             self.fishing_check.start()
 
-    @tasks.loop(seconds=30)
+    @tasks.loop(seconds=20)
     async def hunting_check(self) -> None:
-        if time() - self.bot.last_hunt < 30:
+        if time() - self.bot.last_hunt < 20:
             return
 
         await self.bot.hunting_channel_commands["pokemon"]()
 
-    @tasks.loop(seconds=60)
+    @tasks.loop(seconds=40)
     async def fishing_check(self) -> None:
-        if time() - self.bot.last_fish < 60:
+        if time() - self.bot.last_fish < 40:
             return
 
         await self.bot.fishing_channel_commands["fish spawn"]()

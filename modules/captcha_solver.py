@@ -3,7 +3,7 @@ from PIL import Image
 from io import BytesIO
 from ultralytics import YOLO
 
-model = YOLO("assets/Solver.pt")
+model = YOLO("assets/Solver100k.pt")
 
 
 def solve_captcha(url: str) -> str:
