@@ -9,7 +9,7 @@ from discord.ext import commands
 from cogs.hunting import auto_buy
 from cogs.startup import Config
 
-fishes = json.load(open("./assets/fishes.json"))
+fishes = json.load(open("fishes.json"))
 
 
 class Fishing(commands.Cog):
@@ -88,9 +88,13 @@ class Fishing(commands.Cog):
             balls = ["mb", "db", "prb", "ub", "gb", "pb"]
             balls = balls[balls.index(ball) :]
 
+            children = [
+                child for component in after.components for child in component.children
+            ]
+
             buttons = [
                 button
-                for button in after.components[0].children
+                for button in children
                 for ball in balls
                 if button.custom_id == ball + "_fish"
             ]
@@ -120,7 +124,7 @@ class Fishing(commands.Cog):
 
                     tasks.append(
                         asyncio.create_task(
-                            self.bot.hunting_channel_commands["release duplicates"]()
+                            self.bot.fishing_channel_commands["release duplicates"]()
                         )
                     )
 

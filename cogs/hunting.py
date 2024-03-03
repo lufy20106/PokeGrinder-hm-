@@ -69,6 +69,13 @@ class Hunting(commands.Cog):
             await self.bot.hunting_channel_commands["pokemon"]()
             return
 
+        if not message.embeds:
+            return
+
+        if "You have reached your daily catch limit!" in message.embeds[0].description:
+            self.bot.limit = True
+            return
+
         if "found a wild" not in message.content:
             return
 
@@ -84,11 +91,12 @@ class Hunting(commands.Cog):
         balls = ["mb", "prb", "ub", "gb", "pb"]
         balls = balls[balls.index(ball) :]
 
+        children = [
+            child for component in message.components for child in component.children
+        ]
+
         buttons = [
-            button
-            for button in message.components[0].children
-            for ball in balls
-            if button.custom_id == ball
+            button for button in children for ball in balls if button.custom_id == ball
         ]
 
         if not buttons:
@@ -143,8 +151,8 @@ class Hunting(commands.Cog):
                     )
                 )
 
-        if "completed the quest" in after.content:
-            await asyncio.sleep(2 + randint(0, self.config.suspicion_avoidance) / 1000)
+        if "Your next Quest is now ready!" in before.content:
+            await asyncio.sleep(1 + randint(0, self.config.suspicion_avoidance) / 1000)
             tasks.append(
                 asyncio.create_task(self.bot.hunting_channel_commands["quest info"]())
             )

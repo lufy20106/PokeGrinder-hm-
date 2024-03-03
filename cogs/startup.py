@@ -1,7 +1,6 @@
 from time import time
 from typing import Tuple, Dict
 from dataclasses import dataclass
-import asyncio
 
 from discord.ext import commands, tasks
 from discord import SlashCommand, UserCommand, MessageCommand, SubCommand, TextChannel
@@ -64,11 +63,6 @@ class Startup(commands.Cog):
         )
 
         if self.bot.hunting_channel_commands:
-            await self.bot.hunting_channel_commands["quest info"]()
-            self.hunting_check.start()
-            
-        if self.bot.hunting_channel_commands:
-            await asyncio.sleep(10)
             await self.bot.hunting_channel_commands["pokemon"]()
             self.hunting_check.start()
 
@@ -78,6 +72,10 @@ class Startup(commands.Cog):
 
     @tasks.loop(seconds=20)
     async def hunting_check(self) -> None:
+        if self.bot.limit:
+            self.hunting_check.stop()
+            return
+
         if time() - self.bot.last_hunt < 20:
             return
 
