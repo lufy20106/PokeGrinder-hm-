@@ -9,7 +9,7 @@ from discord.ext import commands
 from cogs.hunting import auto_buy
 from cogs.startup import Config
 
-fishes = json.load(open("fishes.json"))
+fishes = json.load(open("assets/fishes.json"))
 
 
 class Fishing(commands.Cog):
