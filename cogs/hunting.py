@@ -74,19 +74,29 @@ class Hunting(commands.Cog):
 
         if "You have reached your daily catch limit!" in message.embeds[0].description:
             self.bot.limit = True
+            self.bot.hunting_status = "Encounter limit reached!"
+            await self.bot.log()
             return
 
         if "found a wild" not in message.content:
             return
 
+        self.bot.hunting_status = "Grinding..."
+
         self.bot.encounters += 1
         self.bot.last_hunt = time()
+        await self.bot.log()
 
-        ball = [
-            self.config.balls[rarity]
-            for rarity in list(self.config.balls.keys())
-            if rarity in message.embeds[0].footer.text
-        ][-1]
+        name = message.embeds[0].description.split("**")[3]
+        if name in self.config.exception_balls:
+            ball = self.config.exception_balls[name]
+
+        else:
+            ball = [
+                self.config.balls[rarity]
+                for rarity in list(self.config.balls.keys())
+                if rarity in message.embeds[0].footer.text
+            ][-1]
 
         balls = ["mb", "prb", "ub", "gb", "pb"]
         balls = balls[balls.index(ball) :]
@@ -132,6 +142,8 @@ class Hunting(commands.Cog):
                 .split(" ")[0]
                 .replace(",", "")
             )
+
+            await self.bot.log()
 
             if "has been added to your Pokedex" not in after.embeds[0].description:
                 self.bot.duplicates += 1

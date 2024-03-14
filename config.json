@@ -2,7 +2,6 @@
   "CaptchaRetries": 3,
   "ClearConsole": true,
   "CaptchaSolver": true,
-  "LoggingInterval": 10,
   "SuspicionAvoidance": 250,
   "Cooldowns": {
     "RetryCooldown": 1,
@@ -12,6 +11,9 @@
   "": {
     "HuntingChannel": 0,
     "FishingChannel": 0,
+    "ExceptionBalls": {
+      "Crystal Onix": "mb"
+    },
     "Balls": {
       "Common": "pb",
       "Uncommon": "pb",
@@ -42,6 +44,9 @@
   "": {
     "HuntingChannel": 0,
     "FishingChannel": 0,
+    "ExceptionBalls": {
+      "Crystal Onix": "mb"
+    },
     "Balls": {
       "Common": "pb",
       "Uncommon": "pb",
