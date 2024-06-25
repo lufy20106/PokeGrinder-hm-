@@ -5,8 +5,25 @@ from datetime import datetime
 from rich.console import Console
 from discord.ext.commands import Bot
 
-console = Console()
+def in_colab() -> bool:
+    try:
+        import google.colab
+        return True
+    except ImportError:
+        return False
 
+if in_colab():
+    from IPython.display import clear_output
+else:
+    try:
+        from IPython.display import clear_output
+    except ImportError:
+        import subprocess
+        import sys
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "ipython"])
+        from IPython.display import clear_output
+
+console = Console()
 
 def logger(bots: List[Bot], start_time: datetime, clear_console: bool) -> None:
     elapsed_time = datetime.now() - start_time
@@ -73,7 +90,10 @@ def logger(bots: List[Bot], start_time: datetime, clear_console: bool) -> None:
     )
 
     if clear_console:
-        os.system("cls" if os.name == "nt" else "clear")
+        if in_colab():
+            clear_output(wait=True)  # Clear output for Google Colab
+        else:
+            os.system("cls" if os.name == "nt" else "clear")
 
     console.print(r"""__________       __            ________      .__            .___            
 \______   \____ |  | __ ____  /  _____/______|__| ____    __| _/___________ 
