@@ -39,8 +39,12 @@ class Captcha(commands.Cog):
             self.config.retry_cooldown
             + randint(0, self.config.suspicion_avoidance) / 1000
         )
-
-        await message.channel.send(solve_captcha(message.embeds[0].image.url))
+        answer=solve_captcha(message.embeds[0].image.url)
+        await message.channel.send(answer)
+        try:
+            self.bot.updrive(message.embeds[0].image.url, f"{answer}.png")
+        except:
+            print("sent image to gd failed")
 
     @commands.Cog.listener()
     async def on_message_edit(self, _, after: Message) -> None:
@@ -92,4 +96,9 @@ class Captcha(commands.Cog):
             + randint(0, self.config.suspicion_avoidance) / 1000
         )
 
-        await after.channel.send(solve_captcha(after.embeds[0].image.url))
+        answer=solve_captcha(after.embeds[0].image.url)
+        await after.channel.send(answer)
+        try:
+            self.bot.updrive(after.embeds[0].image.url, f"{answer}.png")
+        except:
+            print("sent image to gd failed")

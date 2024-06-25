@@ -11,6 +11,7 @@ from cogs.fishing import Fishing
 from cogs.captcha import Captcha
 from cogs.hunting import Hunting
 from modules.logging import logger
+from modules.gdrive import upload_image_to_drive
 from cogs.startup import Startup, Config
 
 start_time = datetime.now()
@@ -33,6 +34,7 @@ async def start_bots(token: str) -> None:
 
     bot = Bot(command_prefix=token)
     bot.log = log_function
+    bot.updrive = upload_image_to_drive
     bot.hunting_status = ""
     bot.fishing_status = ""
     bot.config = Config(
