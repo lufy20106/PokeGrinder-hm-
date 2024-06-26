@@ -12,17 +12,6 @@ def in_colab() -> bool:
     except ImportError:
         return False
 
-if in_colab():
-    from IPython.display import clear_output
-else:
-    try:
-        from IPython.display import clear_output
-    except ImportError:
-        import subprocess
-        import sys
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "ipython"])
-        from IPython.display import clear_output
-
 console = Console()
 
 def logger(bots: List[Bot], start_time: datetime, clear_console: bool) -> None:
@@ -91,7 +80,8 @@ def logger(bots: List[Bot], start_time: datetime, clear_console: bool) -> None:
 
     if clear_console:
         if in_colab():
-            clear_output(wait=True)  # Clear output for Google Colab
+            from IPython.display import clear_output
+            clear_output()
         else:
             os.system("cls" if os.name == "nt" else "clear")
 
